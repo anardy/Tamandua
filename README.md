@@ -8,15 +8,13 @@ Status do Projeto: `Em Desenvolvimento`
 Requisitos para execução do Projeto
 ======
 
-* [Maven](link-maven)
-* [Tomcat](link-tomcat)
-* [MySQL](link-mysql)
-* [Projeto Tamandua WebService](link-projetows)
+* [Maven](http://maven.apache.org/-maven)
+* [Tomcat](http://tomcat.apache.org/-tomcat)
+* [MySQL](http://www.mysql.com/-mysql)
+* [Projeto Tamandua WebService](https://github.com/anardy/TamanduaWS)
 
 Banco de Dados
 ======
-
-Preparaçao
 
 ```sql
 
@@ -30,13 +28,15 @@ Mysql -u root -p tamandua < tamandua.sql
 Clone Projeto
 ======
 
-Comando do git clone
+`git clone git://github.com/anardy/Tamandua.git`
 
 Maven
 ======
 
-Mvn package
+1. Acesse a pasta do projeto
+2. Execute o seguinte comando: `mvn package`
 
 Tomcat
+======
 
-Com o ```.war faça o deploy no Tomcat
+Com o `.war` faça o deploy no Tomcat
