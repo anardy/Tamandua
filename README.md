@@ -16,14 +16,12 @@ Requisitos para execução do Projeto
 Banco de Dados
 ======
 
-```sql
-
 1. Acesso o Mysql
-Myslq create database tamandua
+`myslq create database tamandua`
 
 2. Importe o SQL
-Mysql -u root -p tamandua < tamandua.sql
-```
+`mysql -u root -p tamandua < tamandua.sql`
+
 
 Clone Projeto
 ======
