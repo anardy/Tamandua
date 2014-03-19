@@ -3,7 +3,7 @@ Tamandua
 
 Aplicação para controle do Banco Comunitário Tamanduá.
 
-Status do Projeto: ```Em Desenvolvimento
+Status do Projeto: `Em Desenvolvimento`
 
 Requisitos para execução do Projeto
 ======
@@ -25,6 +25,7 @@ Myslq create database tamandua
 
 2. Importe o SQL
 Mysql -u root -p tamandua < tamandua.sql
+```
 
 Clone Projeto
 ======
