@@ -34,7 +34,7 @@ Maven
 1. Acesse a pasta do projeto
 2. Execute o seguinte comando: `mvn package`
 
-Tomcat
+Web Container
 ======
 
-Com o `.war` faça o deploy no Tomcat
+Com o `.war` faça o deploy

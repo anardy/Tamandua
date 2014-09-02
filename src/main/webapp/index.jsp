@@ -78,5 +78,4 @@
 			</div>
 		</div>
 	</div>
-	<c:import url="/template/footer_start.html" />
-	<c:import url="/template/footer_end.html" />
+	
