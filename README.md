@@ -35,7 +35,11 @@ git clone git://github.com/anardy/Tamandua.git
 # Maven
 
 1. Acesse a pasta do projeto
-2. Execute o seguinte comando: `mvn package`
+2. Execute o seguinte comando
+
+```
+mvn package
+```
 
 # Web Container
 
