@@ -1,11 +1,11 @@
 Tamandua
 ======
 
-Aplica√ß√£o para controle do Banco Comunit√°rio Tamandu√°.
+AplicaÁ„o para controle do Banco Comunit·rio Tamandu·.
 
 Status do Projeto: Em Desenvolvimento!
 
-# Requisitos para execu√ß√£o do Projeto
+# Requisitos para execuÁ„o do Projeto
 
 * [Maven](http://maven.apache.org/-maven)
 * [WildFly](http://wildfly.org/)
@@ -38,16 +38,13 @@ git clone git://github.com/anardy/Tamandua.git
 
 # Maven
 
-1. Acesse a pasta do projeto
-2. Execute o seguinte comando
-
 ```
 $ mvn clean install
 ```
 
 # Web Container
 
-Com o `.war` fa√ßa o deploy
+Com o `.war` faÁa o deploy
 
 # Acessando
 
