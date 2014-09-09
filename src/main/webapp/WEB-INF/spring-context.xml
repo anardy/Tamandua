@@ -12,7 +12,9 @@
 	<context:component-scan base-package="br.com.tamandua.controller" />
 	<mvc:annotation-driven />
 
-
+	<mvc:interceptors>
+		<bean class="br.com.tamandua.interceptor.AutorizadorInterceptor" />
+	</mvc:interceptors>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

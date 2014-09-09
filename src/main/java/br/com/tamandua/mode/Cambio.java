@@ -1,4 +1,4 @@
-package br.com.tamandua.model;
+package br.com.tamandua.mode;
 
 public class Cambio {
 	private String tipo;

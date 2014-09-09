@@ -50,14 +50,10 @@ DROP TABLE IF EXISTS `funcionario`;
 CREATE TABLE `funcionario` (
   `cpf` varchar(15) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `endereco` varchar(200) NOT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  `dt_admissao` varchar(11) NOT NULL,
-  `salario` varchar(11) NOT NULL,
   `login` varchar(10) NOT NULL,
   `senha` varchar(40) NOT NULL,
-  `situacao` enum('sim','nao') DEFAULT 'sim',
-  `funcao` enum('gerente','atendente','admsistema') NOT NULL,
+  `status` enum('ativo','desativo') DEFAULT 'sim',
+  `funcao` enum('gerente','atendente') NOT NULL,
   PRIMARY KEY (`cpf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -68,7 +64,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES ('321','Valdeosmar','a','3','12','100','Val','321','sim','atendente');
+INSERT INTO `funcionario` VALUES ('321','Testando','user','321','ativo','atendente');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +81,7 @@ CREATE TABLE `cliente` (
   `endereco` varchar(200) NOT NULL,
   `renda` double NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
-  `situacao` enum('sim','nao') DEFAULT 'sim',
+  `status` enum('ativo','desativo') DEFAULT 'sim',
   PRIMARY KEY `cpf` (`cpf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -163,35 +159,6 @@ CREATE TABLE `emprestimo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `filiado`
---
-
-DROP TABLE IF EXISTS `filiado`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `filiado` (
-  `cpf` varchar(40) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `nome_fantasia` varchar(100) NOT NULL,
-  `tipo` varchar(50) NOT NULL,
-  `endereco` varchar(200) NOT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  `situacao` enum('sim','nao') DEFAULT 'sim',
-  PRIMARY KEY (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `filiado`
---
-
-LOCK TABLES `filiado` WRITE;
-/*!40000 ALTER TABLE `filiado` DISABLE KEYS */;
-INSERT INTO `filiado` VALUES ('222.222.222-22','jao','teste','ong','Rua Joa Silva','(43)4343-4343','sim');
-/*!40000 ALTER TABLE `filiado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cambio`
 --
 
@@ -265,6 +232,21 @@ LOCK TABLES `transferencia` WRITE;
 /*!40000 ALTER TABLE `transferencia` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--Tabela de Status
+DROP TABLE IF EXIST status;
+CREATE TABLE status (
+  codigo smallint,
+  status varchar(10),
+  PRIMARY KEY(codigo)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `status` WRITE;
+/*!40000 ALTER TABLE `status` DISABLE KEYS */;
+INSERT INTO `status` VALUES ('1','ativo');
+INSERT INTO `status` VALUES ('2','desativo');
+/*!40000 ALTER TABLE `status` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- Tabela de Token
 DROP TABLE IF EXISTS tokens;

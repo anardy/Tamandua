@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.tamandua.model.Extrato;
+import br.com.tamandua.mode.Extrato;
 import br.com.tamandua.tasks.TaskCliente;
 import br.com.tamandua.tasks.TaskClienteServiceLocator;
 
@@ -17,7 +17,7 @@ public class ExtratoController {
 
 	@RequestMapping("extrato")
 	public String extrato() {
-		return "extrato";
+		return "servico/extrato";
 	}
 	
 	@RequestMapping("tranextrato")
@@ -25,8 +25,8 @@ public class ExtratoController {
 		ModelAndView mv = null;
 		try {
 			TaskCliente cliente = new TaskClienteServiceLocator().getTaskCliente();
-			mv = new ModelAndView("servico/extrato");
-			mv.addObject("extrato", cliente.taskextrato(String.valueOf(extrato.getNroconta()), extrato.getDatainicio(), extrato.getDatafinal()));
+			mv = new ModelAndView("servico/resultado");
+			mv.addObject("msgm", cliente.taskextrato(String.valueOf(extrato.getNroconta()), extrato.getDatainicio(), extrato.getDatafinal()));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

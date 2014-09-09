@@ -2,13 +2,14 @@ package br.com.tamandua.controller;
 
 import java.rmi.RemoteException;
 
+import javax.servlet.http.HttpSession;
 import javax.xml.rpc.ServiceException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.tamandua.model.Transferencia;
+import br.com.tamandua.mode.Transferencia;
 import br.com.tamandua.tasks.TaskCliente;
 import br.com.tamandua.tasks.TaskClienteServiceLocator;
 
@@ -16,17 +17,18 @@ import br.com.tamandua.tasks.TaskClienteServiceLocator;
 public class TransferenciaController {
 
 	@RequestMapping("trantransferencia")
-	public ModelAndView transaldo(Transferencia transferencia) {
+	public ModelAndView transaldo(Transferencia transferencia, HttpSession session) {
 		ModelAndView mv = null;
 		try {
 			TaskCliente cliente = new TaskClienteServiceLocator()
 					.getTaskCliente();
-			mv = new ModelAndView("servico/transferencia");
-			mv.addObject("transferencia", cliente.tasktransferencia(
-					String.valueOf(transferencia.getNroconta_concedente()),
-					String.valueOf(transferencia.getNroconta_beneficiado()),
+			mv = new ModelAndView("servico/resultado");
+			mv.addObject("msgm", cliente.tasktransferencia(
+					String.valueOf(transferencia.getNrocontaconcedente()),
+					String.valueOf(transferencia.getNrocontabeneficiado()),
 					transferencia.getValor(),
-					transferencia.getSenha_concedente()));
+					transferencia.getSenhaconcedente(),
+					session.getAttribute("codigoUsuario").toString()));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -37,6 +39,6 @@ public class TransferenciaController {
 
 	@RequestMapping("transferencia")
 	public String transferencia() {
-		return "transferencia";
+		return "servico/transferencia";
 	}
 }

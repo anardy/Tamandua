@@ -1,6 +1,7 @@
-<div class="span6 widget">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div class="col-md-6 widget">
 	<h2>
-		<i class="glyphicons icon-info-sign"></i> Informações da Conta
+		<i class="glyphicons icon-info-sign"></i> Resultado da Transação
 	</h2>
 	<hr>
 	<div class="content">
@@ -8,13 +9,11 @@
 	</div>
 </div>
 </div>
-</div>
 
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12 widget">
+<div class="row">
+		<div class="col-md-12 widget">
 			<h2>
-				<i class="glyphicons icon-terminal"></i> Informações da Transação
+				<i class="glyphicons icon-terminal"></i> Informações da Requisição da Transação
 			</h2>
 			<hr>
 			<div class="content">
@@ -23,7 +22,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="teste">
 	<div class="container">
 		<div class="shortcuts">
@@ -46,9 +44,11 @@
 			<a href="transferencia.do" class="shortcut"><i class="shortcut-icon icon-random"></i> 
 				<span class="shortcut-label">Transferência</span>
 			</a>
-			<a href="#" class="shortcut"><i class="shortcut-icon icon-gift"></i> 
-				<span class="shortcut-label">Empréstimo</span>
-			</a>
+			<c:if test="${funcao == 'gerente' }">
+				<a href="#" class="shortcut"><i class="shortcut-icon icon-gift"></i> 
+					<span class="shortcut-label">Empréstimo</span>
+				</a>
+			</c:if>
 			<a href="extrato.do	" class="shortcut"><i class="shortcut-icon icon-eye-open"></i> 
 				<span class="shortcut-label">Extrato</span>
 			</a>
@@ -56,4 +56,9 @@
 	</div>
 </div>
 
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/vendor/bootstrap-datepicker.js"></script>
 <script src="js/transaction.js"></script>
+
+</body>
+</html>
