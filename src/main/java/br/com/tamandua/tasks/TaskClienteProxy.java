@@ -44,6 +44,18 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     return taskCliente;
   }
   
+  public br.com.tamandua.Model.Funcionario taskdadosFuncionario(java.lang.String user, java.lang.String senha) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskdadosFuncionario(user, senha);
+  }
+  
+  public java.lang.String tasktransferencia(java.lang.String nroconta_concedente, java.lang.String nroconta_beneficiado, double valor, java.lang.String senha_concedente, java.lang.String codigoFunc) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.tasktransferencia(nroconta_concedente, nroconta_beneficiado, valor, senha_concedente, codigoFunc);
+  }
+  
   public boolean tasklogin(java.lang.String user, java.lang.String senha) throws java.rmi.RemoteException{
     if (taskCliente == null)
       _initTaskClienteProxy();
@@ -54,24 +66,6 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     if (taskCliente == null)
       _initTaskClienteProxy();
     return taskCliente.taskextrato(nroconta, data_inicio, data_fim);
-  }
-  
-  public java.lang.String tasksaldo(java.lang.String nroconta, java.lang.String senha) throws java.rmi.RemoteException{
-    if (taskCliente == null)
-      _initTaskClienteProxy();
-    return taskCliente.tasksaldo(nroconta, senha);
-  }
-  
-  public br.com.tamandua.Model.Funcionario taskdadosFuncionario(java.lang.String user, java.lang.String senha) throws java.rmi.RemoteException{
-    if (taskCliente == null)
-      _initTaskClienteProxy();
-    return taskCliente.taskdadosFuncionario(user, senha);
-  }
-  
-  public java.lang.String taskcambio(java.lang.String tipo, double valor_tamandua, double valor_real, java.lang.String codigoFunc) throws java.rmi.RemoteException{
-    if (taskCliente == null)
-      _initTaskClienteProxy();
-    return taskCliente.taskcambio(tipo, valor_tamandua, valor_real, codigoFunc);
   }
   
   public java.lang.String tasksaque(java.lang.String nroconta, double valor, java.lang.String senha, java.lang.String codigoFunc) throws java.rmi.RemoteException{
@@ -86,10 +80,16 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     return taskCliente.taskdeposito(nroconta_beneficiado, valor, codigoFunc);
   }
   
-  public java.lang.String tasktransferencia(java.lang.String nroconta_concedente, java.lang.String nroconta_beneficiado, double valor, java.lang.String senha_concedente, java.lang.String codigoFunc) throws java.rmi.RemoteException{
+  public java.lang.String taskcambio(java.lang.String tipo, double valor_tamandua, double valor_real, java.lang.String codigoFunc) throws java.rmi.RemoteException{
     if (taskCliente == null)
       _initTaskClienteProxy();
-    return taskCliente.tasktransferencia(nroconta_concedente, nroconta_beneficiado, valor, senha_concedente, codigoFunc);
+    return taskCliente.taskcambio(tipo, valor_tamandua, valor_real, codigoFunc);
+  }
+  
+  public java.lang.String tasksaldo(java.lang.String nroconta, java.lang.String senha) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.tasksaldo(nroconta, senha);
   }
   
   
