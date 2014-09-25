@@ -44,16 +44,28 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     return taskCliente;
   }
   
-  public br.com.tamandua.Model.Funcionario taskdadosFuncionario(java.lang.String user, java.lang.String senha) throws java.rmi.RemoteException{
+  public boolean taskverificaLoginAtivo(java.lang.String user) throws java.rmi.RemoteException{
     if (taskCliente == null)
       _initTaskClienteProxy();
-    return taskCliente.taskdadosFuncionario(user, senha);
+    return taskCliente.taskverificaLoginAtivo(user);
   }
   
-  public java.lang.String tasktransferencia(java.lang.String nroconta_concedente, java.lang.String nroconta_beneficiado, double valor, java.lang.String senha_concedente, java.lang.String codigoFunc) throws java.rmi.RemoteException{
+  public java.lang.String taskconsultaFuncionario(java.lang.String cpf) throws java.rmi.RemoteException{
     if (taskCliente == null)
       _initTaskClienteProxy();
-    return taskCliente.tasktransferencia(nroconta_concedente, nroconta_beneficiado, valor, senha_concedente, codigoFunc);
+    return taskCliente.taskconsultaFuncionario(cpf);
+  }
+  
+  public java.lang.String taskinserirFuncionario(java.lang.String cpf, java.lang.String nome, java.lang.String login, java.lang.String senha, short status, java.lang.String funcao) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskinserirFuncionario(cpf, nome, login, senha, status, funcao);
+  }
+  
+  public java.lang.String taskremoverFuncionario(java.lang.String cpf) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskremoverFuncionario(cpf);
   }
   
   public boolean tasklogin(java.lang.String user, java.lang.String senha) throws java.rmi.RemoteException{
@@ -90,6 +102,48 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     if (taskCliente == null)
       _initTaskClienteProxy();
     return taskCliente.tasksaldo(nroconta, senha);
+  }
+  
+  public java.lang.String tasktransferencia(java.lang.String nroconta_concedente, java.lang.String nroconta_beneficiado, double valor, java.lang.String senha_concedente, java.lang.String codigoFunc) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.tasktransferencia(nroconta_concedente, nroconta_beneficiado, valor, senha_concedente, codigoFunc);
+  }
+  
+  public java.lang.String taskinserirCliente(java.lang.String cpf, java.lang.String nome, java.lang.String telefone, java.lang.String endereco, short status) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskinserirCliente(cpf, nome, telefone, endereco, status);
+  }
+  
+  public java.lang.String taskremoverCliente(java.lang.String cpf) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskremoverCliente(cpf);
+  }
+  
+  public java.lang.String taskconsultaCliente(java.lang.String cpf) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskconsultaCliente(cpf);
+  }
+  
+  public br.com.tamandua.Model.FuncionarioModel taskdadosFuncionario(java.lang.String user, java.lang.String senha) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskdadosFuncionario(user, senha);
+  }
+  
+  public java.lang.String taskeditarCliente(java.lang.String cpf, java.lang.String nome, java.lang.String telefone, java.lang.String endereco, short status) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskeditarCliente(cpf, nome, telefone, endereco, status);
+  }
+  
+  public java.lang.String taskeditarFuncionario(java.lang.String cpf, java.lang.String nome, java.lang.String login, java.lang.String senha, short status, java.lang.String funcao) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskeditarFuncionario(cpf, nome, login, senha, status, funcao);
   }
   
   

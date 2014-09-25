@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.tamandua.hash.SenhaHash;
 import br.com.tamandua.mode.Funcionario;
 import br.com.tamandua.tasks.TaskCliente;
 import br.com.tamandua.tasks.TaskClienteServiceLocator;
@@ -24,15 +25,20 @@ public class LoginController {
 	@RequestMapping("/efetuaLogin")
 	public String efetuarLogin(Funcionario funcionario, HttpSession session, final RedirectAttributes redirectAttributes) {
 		String error = null;
-		br.com.tamandua.Model.Funcionario func;
+		br.com.tamandua.Model.FuncionarioModel func;
 		try {
 			TaskCliente cliente = new TaskClienteServiceLocator().getTaskCliente();
-			if (cliente.tasklogin(funcionario.getLogin(), funcionario.getSenha())) {
-				func = cliente.taskdadosFuncionario(funcionario.getLogin(), funcionario.getSenha());
-					session.setAttribute("usuarioLogado", func.getNome());
-					session.setAttribute("funcao", func.getFuncao());
-					session.setAttribute("codigoUsuario", func.getCpf());
-					return "redirect:area.do";
+			String hash_senha = new SenhaHash().hash_senha(funcionario.getSenha());
+			if (cliente.tasklogin(funcionario.getLogin(), hash_senha)) {
+				if (cliente.taskverificaLoginAtivo(funcionario.getLogin())) {
+					func = cliente.taskdadosFuncionario(funcionario.getLogin(), hash_senha);
+						session.setAttribute("usuarioLogado", func.getNome());
+						session.setAttribute("funcao", func.getFuncao());
+						session.setAttribute("codigoUsuario", func.getCpf());
+						return "redirect:area.do";
+				} else {
+					error = "Conta desativada";
+				}
 			} else {
 				error = "Login ou Senha errado";
 			}

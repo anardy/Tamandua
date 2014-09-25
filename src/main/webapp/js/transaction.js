@@ -1,98 +1,113 @@
 var Tamandua = function() {
 	return {
+		// método da transação de Cambio
 		TransacaoCambio: function() {
-			Tamandua.Enviar("trancambio", "Cambio", $('#frmCambio').serialize(), function(msgm) {
-				if (msgm === "Transação de Cambio executada com sucesso") {
+			Tamandua.Enviar({url: "trancambio", page: "Cambio", dados: $('#frmCambio').serialize()}, function(obj) {
+				if (obj.msgm === "Transação de Cambio executada com sucesso") {
 					// call dados do montante
-					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>Cambio</strong> realizada com <strong>Sucesso</strong>.");
+					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + obj.page + "</strong> realizada com <strong>Sucesso</strong>.");
 					$('#conta').append("Exibir dados do montante");
 				} else {
-					Tamandua.MensagemErro("Cambio", msgm);
+					Tamandua.MensagemErro(obj);
 				}
 			});
 		},
+		// método da transação de Deposito
 		TransacaoDeposito: function() {
-			Tamandua.Enviar("trandeposito", "Deposito", $('#frmDeposito').serialize(), function(msgm) {
-				if (msgm === "Transação de Depósito executada com sucesso") {
+			Tamandua.Enviar({url: "trandeposito", page: "Deposito", dados: $('#frmDeposito').serialize()}, function(obj) {
+				if (obj.msgm === "Transação de Depósito executada com sucesso") {
 					// call dados conta
-					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>Deposito</strong> realizada com <strong>Sucesso</strong>.");
+					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + obj.page + "</strong> realizada com <strong>Sucesso</strong>.");
 					$('#conta').append("Exibir informações da conta.");
 				} else {
-					Tamandua.MensagemErro("Deposito", msgm);
+					Tamandua.MensagemErro(obj);
 				}
 			});
 		},
+		// método da transação de Saque
 		TransacaoSaque: function() {
-			Tamandua.Enviar("transaque", "Saque", $('#frmSaque').serialize(), function(msgm) {
-				if (msgm === "Transação realizada com sucesso!") {
+			Tamandua.Enviar({url: "transaque", page: "Saque", dados: $('#frmSaque').serialize()}, function(obj) {
+				if (obj.msgm === "Transação realizada com sucesso!") {
 					// call dados conta
-					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>Saque</strong> realizada com <strong>Sucesso</strong>.");
+					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + obj.page + "</strong> realizada com <strong>Sucesso</strong>.");
 					$('#conta').append("Exibir informações da conta.");
 				} else {
-					Tamandua.MensagemErro("Saque", msgm);
+					Tamandua.MensagemErro(obj);
 				}
 			});
 		},
+		// método da transação de Saldo
 		TransacaoSaldo: function() {
-			Tamandua.Enviar("transaldo", "Saldo", $('#frmSaldo').serialize(), function(msgm) {
+			Tamandua.Enviar({url: "transaldo", page: "Saldo", dados: $('#frmSaldo').serialize()}, function(obj) {
 				// call dados conta
-				if (parseInt(msgm,10) > 0 || (parseInt(msgm, 10) < 0)) {
-					$('#conta').append("<p>O saldo da conta é: " + msgm);
-					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>Saldo</strong> realizada com <strong>Sucesso</strong>.");
+				if ((parseInt(obj.msgm,10) > 0) || (parseInt(obj.msgm, 10) <= 0)) {
+					$('#conta').append("<p>O saldo da conta é: " + obj.msgm);
+					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + obj.page + "</strong> realizada com <strong>Sucesso</strong>.");
 				} else {
-					Tamandua.MensagemErro("Saldo", msgm);
+					Tamandua.MensagemErro(obj);
 				}
 			});
 		},
+		// método da transação de Extrato
 		TransacaoExtrato: function() {
-			Tamandua.Enviar("tranextrato", "Extrato", $('#frmExtrato').serialize(), function(msgm) {
-				if (msgm !== null) {
-					$('#conta').append("<p>" + msgm + "</p>");
-					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>Extrato</strong> realizada com <strong>Sucesso</strong>.");
+			Tamandua.Enviar({url: "tranextrato", page: "Extrato", dados: $('#frmExtrato').serialize()}, function(obj) {
+				if (obj.msgm !== "") {
+					$('#conta').append("<p>" + obj.msgm + "</p>");
+					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + obj.page + "</strong> realizada com <strong>Sucesso</strong>.");
 				} else {
-					Tamandua.MensagemErro("Extrato", msgm);
+					obj.msgm = "Nenhum registro encontrado!";
+					Tamandua.MensagemErro(obj);
 				}
 			});
 		},
+		// método da transação de Transferência
 		TransacaoTransferencia: function() {
-			Tamandua.Enviar("trantransferencia", "Transferencia", $('#frmTransferencia').serialize(), function(msgm) {
-				if (msgm === "Transação de Transferência executada com sucesso") {
+			Tamandua.Enviar({url: "trantransferencia", page: "Transferencia", dados: $('#frmTransferencia').serialize()}, function(obj) {
+				if (obj.msgm === "Transação de Transferência executada com sucesso") {
 					// call dados conta
-					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>Transferência</strong> realizada com <strong>Sucesso</strong>.");
+					$('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + obj.page + "</strong> realizada com <strong>Sucesso</strong>.");
 					$('#conta').append("Exibir informações da conta.");
 				} else {
-					Tamandua.MensagemErro("Transferencia", msgm);
+					Tamandua.MensagemErro(obj);
 				}
 			});
 		},
-		Enviar: function(page, id, dados, callback) {
+		// Enviar recebe um obj e um callback, onde o obj é:
+		// url: a url da requisição AJAX
+		// page: O nome da transação
+		// dados: Dados do formulário preenchido pelo usuário
+		// (retorna obj +) msgm: A mensagem de retorno da requisição AJAX passada para o callback 
+		Enviar: function(obj, callback) {
 			$.ajax({
-				  url: page+'.do',
+				  url: obj.url+'.do',
 				  type: 'POST',
-				  data: dados,
+				  data: obj.dados,
 				  beforeSend: function() {
 					  $('#terminal').text('');
-					  $('#terminal').append("<p>"+ Tamandua.Data() +" - Solicitando transação de <strong>" + id + "</strong>...</p>");
+					  $('#terminal').append("<p>"+ Tamandua.Data() +" - Solicitando transação de <strong>" + obj.page + "</strong>...</p>");
 					  $('#conta').text('Carregando...');
 				  },
 				  success: function(data) {
-					  result = JSON.parse(data);
+					  var result = JSON.parse(data);
+					  obj.msgm = result.msgm;
 					  $('#conta').text('');
-					  callback(result.msgm);
+					  callback(obj);
 				  },
 				  complete: function() {
-					  $('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + id + "</strong> foi <strong>Concluída<strong>.");
+					  $('#terminal').append("<p>"+ Tamandua.Data() +" - Chamada de transação de <strong>" + obj.page + "</strong> foi <strong>Concluída<strong>.");
 				  },
 				  error: function() {
-					  $('#terminal').append("<p>"+ Tamandua.Data() +" - Ocorreu um <strong>erro</strong> na chamada da transação de <strong>" + id + "</strong>.");
+					  $('#terminal').append("<p>"+ Tamandua.Data() +" - Ocorreu um <strong>erro</strong> na chamada da transação de <strong>" + obj.page + "</strong>.");
 					  $('#conta').text('');
 				  }
 			});
 		},
-		MensagemErro: function(id, erro) {
-			$('#terminal').append("<p>"+ Tamandua.Data() +" - Ocorreu um <strong>erro</strong> no retorno da transação de <strong>" + id + "</strong>.");
-			  $('#terminal').append("<p>"+ Tamandua.Data() +" - Erro retornado pelo sistema: <strong>" + erro + "</strong>.");
+		// mensagem de erro quando o retorno da transação não é de Sucesso.
+		MensagemErro: function(obj) {
+			$('#terminal').append("<p>"+ Tamandua.Data() +" - Ocorreu um <strong>erro</strong> no retorno da transação de <strong>" + obj.page + "</strong>.");
+			$('#terminal').append("<p>"+ Tamandua.Data() +" - Erro retornado pelo sistema: <strong>" + obj.msgm + "</strong>.");
 		},
+		// Recupera a data do sistema
 		Data: function() {
 			var hoje = new Date();
 			var dia = hoje.getDate();
@@ -112,6 +127,7 @@ var Tamandua = function() {
 	};
 }();
 
+// Funcionar o datepicker na página de Extrato
 $(function() {
 	$('#datainicio').datepicker({
 		format : 'dd/mm/yyyy'
@@ -121,10 +137,12 @@ $(function() {
 	});
 });
 
+// Quando selecionar a data, fechar o datepicker
 $('#datainicio').on('changeDate', function(ev) {
 	$(this).datepicker('hide');
 });
 
+//Quando selecionar a data, fechar o datepicker
 $('#datafinal').on('changeDate', function(ev) {
 	$(this).datepicker('hide');
 });

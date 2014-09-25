@@ -5,6 +5,24 @@ public class Funcionario {
 	private String senha;
 	private String funcao;
 	private String nome;
+	private String cpf;
+	private short status;
+
+	public short getStatus() {
+		return status;
+	}
+
+	public void setStatus(short status) {
+		this.status = status;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public String getLogin() {
 		return login;

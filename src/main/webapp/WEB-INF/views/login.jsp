@@ -1,6 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:import url="/template/header.html" />
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="shortcut icon" href="img/logosite.png" type="image/x-icon" />
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<title>Login | Banco Comunitario Tamandua</title>
+</head>
+<body>
 
 	<div class="container" style="margin-top: 30px">
 		<div class="col-md-4">
@@ -16,7 +27,8 @@
 								<input class="form-control" placeholder="login" name="login">
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="senha" name="senha" type="password">
+								<input class="form-control" placeholder="senha" name="senha"
+									type="password">
 							</div>
 							<div class="checkbox">
 								<label> <input name="remember" type="checkbox"
@@ -32,4 +44,5 @@
 		</div>
 	</div>
 
-<c:import url="/template/footer.html" />
+</body>
+</html>

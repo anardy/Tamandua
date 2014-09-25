@@ -1,5 +1,5 @@
 /**
- * Funcionario.java
+ * FuncionarioModel.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,7 +7,7 @@
 
 package br.com.tamandua.Model;
 
-public class Funcionario  implements java.io.Serializable {
+public class FuncionarioModel  implements java.io.Serializable {
     private java.lang.String cpf;
 
     private java.lang.String funcao;
@@ -18,25 +18,29 @@ public class Funcionario  implements java.io.Serializable {
 
     private java.lang.String senha;
 
-    public Funcionario() {
+    private java.lang.Short status;
+
+    public FuncionarioModel() {
     }
 
-    public Funcionario(
+    public FuncionarioModel(
            java.lang.String cpf,
            java.lang.String funcao,
            java.lang.String login,
            java.lang.String nome,
-           java.lang.String senha) {
+           java.lang.String senha,
+           java.lang.Short status) {
            this.cpf = cpf;
            this.funcao = funcao;
            this.login = login;
            this.nome = nome;
            this.senha = senha;
+           this.status = status;
     }
 
 
     /**
-     * Gets the cpf value for this Funcionario.
+     * Gets the cpf value for this FuncionarioModel.
      * 
      * @return cpf
      */
@@ -46,7 +50,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Sets the cpf value for this Funcionario.
+     * Sets the cpf value for this FuncionarioModel.
      * 
      * @param cpf
      */
@@ -56,7 +60,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Gets the funcao value for this Funcionario.
+     * Gets the funcao value for this FuncionarioModel.
      * 
      * @return funcao
      */
@@ -66,7 +70,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Sets the funcao value for this Funcionario.
+     * Sets the funcao value for this FuncionarioModel.
      * 
      * @param funcao
      */
@@ -76,7 +80,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Gets the login value for this Funcionario.
+     * Gets the login value for this FuncionarioModel.
      * 
      * @return login
      */
@@ -86,7 +90,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Sets the login value for this Funcionario.
+     * Sets the login value for this FuncionarioModel.
      * 
      * @param login
      */
@@ -96,7 +100,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Gets the nome value for this Funcionario.
+     * Gets the nome value for this FuncionarioModel.
      * 
      * @return nome
      */
@@ -106,7 +110,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Sets the nome value for this Funcionario.
+     * Sets the nome value for this FuncionarioModel.
      * 
      * @param nome
      */
@@ -116,7 +120,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Gets the senha value for this Funcionario.
+     * Gets the senha value for this FuncionarioModel.
      * 
      * @return senha
      */
@@ -126,7 +130,7 @@ public class Funcionario  implements java.io.Serializable {
 
 
     /**
-     * Sets the senha value for this Funcionario.
+     * Sets the senha value for this FuncionarioModel.
      * 
      * @param senha
      */
@@ -134,10 +138,30 @@ public class Funcionario  implements java.io.Serializable {
         this.senha = senha;
     }
 
+
+    /**
+     * Gets the status value for this FuncionarioModel.
+     * 
+     * @return status
+     */
+    public java.lang.Short getStatus() {
+        return status;
+    }
+
+
+    /**
+     * Sets the status value for this FuncionarioModel.
+     * 
+     * @param status
+     */
+    public void setStatus(java.lang.Short status) {
+        this.status = status;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Funcionario)) return false;
-        Funcionario other = (Funcionario) obj;
+        if (!(obj instanceof FuncionarioModel)) return false;
+        FuncionarioModel other = (FuncionarioModel) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -160,7 +184,10 @@ public class Funcionario  implements java.io.Serializable {
               this.nome.equals(other.getNome()))) &&
             ((this.senha==null && other.getSenha()==null) || 
              (this.senha!=null &&
-              this.senha.equals(other.getSenha())));
+              this.senha.equals(other.getSenha()))) &&
+            ((this.status==null && other.getStatus()==null) || 
+             (this.status!=null &&
+              this.status.equals(other.getStatus())));
         __equalsCalc = null;
         return _equals;
     }
@@ -187,16 +214,19 @@ public class Funcionario  implements java.io.Serializable {
         if (getSenha() != null) {
             _hashCode += getSenha().hashCode();
         }
+        if (getStatus() != null) {
+            _hashCode += getStatus().hashCode();
+        }
         __hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Funcionario.class, true);
+        new org.apache.axis.description.TypeDesc(FuncionarioModel.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://Model.tamandua.com.br", "Funcionario"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://Model.tamandua.com.br", "FuncionarioModel"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("cpf");
         elemField.setXmlName(new javax.xml.namespace.QName("http://Model.tamandua.com.br", "cpf"));
@@ -225,6 +255,12 @@ public class Funcionario  implements java.io.Serializable {
         elemField.setFieldName("senha");
         elemField.setXmlName(new javax.xml.namespace.QName("http://Model.tamandua.com.br", "senha"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("status");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://Model.tamandua.com.br", "status"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "short"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
     }
