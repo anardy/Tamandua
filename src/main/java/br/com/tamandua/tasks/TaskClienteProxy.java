@@ -44,12 +44,6 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     return taskCliente;
   }
   
-  public boolean taskverificaLoginAtivo(java.lang.String user) throws java.rmi.RemoteException{
-    if (taskCliente == null)
-      _initTaskClienteProxy();
-    return taskCliente.taskverificaLoginAtivo(user);
-  }
-  
   public java.lang.String taskconsultaFuncionario(java.lang.String cpf) throws java.rmi.RemoteException{
     if (taskCliente == null)
       _initTaskClienteProxy();
@@ -66,6 +60,12 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     if (taskCliente == null)
       _initTaskClienteProxy();
     return taskCliente.taskremoverFuncionario(cpf);
+  }
+  
+  public boolean taskverificaLoginAtivo(java.lang.String user) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskverificaLoginAtivo(user);
   }
   
   public boolean tasklogin(java.lang.String user, java.lang.String senha) throws java.rmi.RemoteException{
@@ -116,12 +116,6 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     return taskCliente.taskinserirCliente(cpf, nome, telefone, endereco, status);
   }
   
-  public java.lang.String taskremoverCliente(java.lang.String cpf) throws java.rmi.RemoteException{
-    if (taskCliente == null)
-      _initTaskClienteProxy();
-    return taskCliente.taskremoverCliente(cpf);
-  }
-  
   public java.lang.String taskconsultaCliente(java.lang.String cpf) throws java.rmi.RemoteException{
     if (taskCliente == null)
       _initTaskClienteProxy();
@@ -134,6 +128,12 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     return taskCliente.taskdadosFuncionario(user, senha);
   }
   
+  public java.lang.String taskremoverCliente(java.lang.String cpf) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskremoverCliente(cpf);
+  }
+  
   public java.lang.String taskeditarCliente(java.lang.String cpf, java.lang.String nome, java.lang.String telefone, java.lang.String endereco, short status) throws java.rmi.RemoteException{
     if (taskCliente == null)
       _initTaskClienteProxy();
@@ -144,6 +144,12 @@ public class TaskClienteProxy implements br.com.tamandua.tasks.TaskCliente {
     if (taskCliente == null)
       _initTaskClienteProxy();
     return taskCliente.taskeditarFuncionario(cpf, nome, login, senha, status, funcao);
+  }
+  
+  public java.lang.String taskcriarConta(java.lang.String cpf, java.lang.String senha) throws java.rmi.RemoteException{
+    if (taskCliente == null)
+      _initTaskClienteProxy();
+    return taskCliente.taskcriarConta(cpf, senha);
   }
   
   

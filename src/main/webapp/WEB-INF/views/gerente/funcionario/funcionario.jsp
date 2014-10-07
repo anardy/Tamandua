@@ -3,14 +3,14 @@
 
 <h2>Funcionário</h2>
 
-<a href="cadFuncionario.do" role="button" class="btn btn-success pull-right">
-	+ Novo Funcionário </a>
+<a href="cadFuncionario.do" role="button"
+	class="btn btn-success pull-right"> + Novo Funcionário </a>
 
 <form id="formFuncionario">
 	<div class="form-group">
 		<label>CPF</label>
 		<div class="controls">
-			<input type="text" name="cpf" />
+			<input type="text" name="cpf" id="txtCpf" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -32,8 +32,8 @@
 				<div class="form-group">
 					<label>Nome</label>
 					<div class="controls">
-						<input type="text" name="nome" id="txtNome" />
-						<input type="hidden" name="cpf" id="hdnCpf" />
+						<input type="text" name="nome" id="txtNome" /> <input
+							type="hidden" name="cpf" id="hdnCpf" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -51,20 +51,26 @@
 				<div class="form-group">
 					<label>Status</label>
 					<div class="controls">
-						<input type="text" name="status" id="txtStatus" />
+						<select name="status" id="ddlStatus">
+							<option value="1">Ativo</option>
+							<option value="2">Desativo</option>
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label>Função</label>
 					<div class="controls">
-						<input type="text" name="funcao" id="txtFuncao" />
+						<select name="funcao" id="ddlFuncao">
+							<option value="Atendente">Atendente</option>
+							<option value="Gerente">Gerente</option>
+						</select>
 					</div>
 				</div>
 			</form>
 
 			<input type="button" value="Editar" class="btn btn-success"
-				onclick="Tamandua.EditarFuncionario();"> <input type="button"
-				value="Remover" class="btn btn-danger"
+				onclick="Tamandua.EditarFuncionario();"> <input
+				type="button" value="Remover" class="btn btn-danger"
 				onclick="Tamandua.RemoverFuncionario();">
 
 		</div>

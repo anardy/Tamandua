@@ -12,7 +12,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 
 		String uri = request.getRequestURI();
 
-		if (uri.endsWith("login.do") || uri.endsWith("efetuaLogin.do") || uri.contains("views")) {
+		if (uri.endsWith("login.do") || uri.endsWith("efetuaLogin.do")) {
 			return true;
 		}
 

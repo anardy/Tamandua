@@ -10,7 +10,7 @@
 	<div class="form-group">
 		<label>CPF</label>
 		<div class="controls">
-			<input type="text" name="cpf" />
+			<input type="text" name="cpf" id="txtCpf" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -32,8 +32,8 @@
 				<div class="form-group">
 					<label>Nome</label>
 					<div class="controls">
-						<input type="text" name="nome" id="txtNome" />
-						<input type="hidden" name="cpf" id="hdnCpf" />
+						<input type="text" name="nome" id="txtNome" /> <input
+							type="hidden" name="cpf" id="hdnCpf" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -51,7 +51,10 @@
 				<div class="form-group">
 					<label>Status</label>
 					<div class="controls">
-						<input type="text" name="status" id="txtStatus" />
+						<select name="status" id="ddlStatus">
+							<option value="1">Ativo</option>
+							<option value="2">Desativo</option>
+						</select>
 					</div>
 				</div>
 			</form>

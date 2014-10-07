@@ -12,14 +12,12 @@
 	<context:component-scan base-package="br.com.tamandua.controller" />
 	<mvc:annotation-driven />
 
-	<!--  <mvc:interceptors>
+	<mvc:interceptors>
 		<bean class="br.com.tamandua.interceptor.AutorizadorInterceptor" />
 	</mvc:interceptors>
 	<mvc:interceptors>
 		<bean class="br.com.tamandua.interceptor.TipoUsuarioInterceptor" />
-	</mvc:interceptors>
-	-->
-	
+	</mvc:interceptors>	
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

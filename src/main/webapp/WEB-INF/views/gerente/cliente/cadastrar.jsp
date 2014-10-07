@@ -29,9 +29,18 @@
 		</div>
 	</div>
 	<div class="form-group">
+		<label>Senha da Conta</label>
+		<div class="controls">
+			<input type="password" name="senhaConta" id="txtSenhaConta" />
+		</div>
+	</div>
+	<div class="form-group">
 		<label>Status</label>
 		<div class="controls">
-			<input type="text" name="status" id="txtStatus" />
+			<select name="status" id="ddlStatus">
+				<option value="1">Ativo</option>
+				<option value="2">Desativo</option>
+			</select>
 		</div>
 	</div>
 	<div class="form-group">

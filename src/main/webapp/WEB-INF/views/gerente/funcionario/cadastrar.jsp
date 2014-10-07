@@ -31,18 +31,25 @@
 	<div class="form-group">
 		<label>Status</label>
 		<div class="controls">
-			<input type="text" name="status" id="txtStatus" />
+			<select name="status" id="ddlStatus">
+				<option value="1">Ativo</option>
+				<option value="2">Desativo</option>
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<label>Função</label>
 		<div class="controls">
-			<input type="text" name="funcao" id="txtFuncao" />
+			<select name="funcao" id="ddlFuncao">
+				<option value="Atendente">Atendente</option>
+				<option value="Gerente">Gerente</option>
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="controls">
-			<input type="button" value="Cadastrar" class="btn btn-primary" onclick="Tamandua.InserirFuncionario();">
+			<input type="button" value="Cadastrar" class="btn btn-primary"
+				onclick="Tamandua.InserirFuncionario();">
 		</div>
 	</div>
 </form>

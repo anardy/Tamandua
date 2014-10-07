@@ -17,7 +17,7 @@ import br.com.tamandua.tasks.TaskClienteServiceLocator;
 @Controller
 public class FuncionarioController {
 
-	@RequestMapping("gerente/funcionario")
+	@RequestMapping("funcionario")
 	public String funcionario() {
 		return "gerente/funcionario/funcionario";
 	}
@@ -84,8 +84,9 @@ public class FuncionarioController {
 		ModelAndView mv = null;
 		JSONObject result = new JSONObject();
 		try {
+			String senhaHash = new SenhaHash().hash_senha(funcionario.getSenha());
 			TaskCliente task = new TaskClienteServiceLocator().getTaskCliente();
-			result.put("msgm", task.taskeditarFuncionario(funcionario.getCpf(), funcionario.getNome(), funcionario.getLogin(), funcionario.getSenha(), funcionario.getStatus(), funcionario.getFuncao()));
+			result.put("msgm", task.taskeditarFuncionario(funcionario.getCpf(), funcionario.getNome(), funcionario.getLogin(), senhaHash, funcionario.getStatus(), funcionario.getFuncao()));
 			mv = new ModelAndView("gerente/funcionario/resultado");
 			mv.addObject("msgm", result.toString());
 		} catch (ServiceException e) {

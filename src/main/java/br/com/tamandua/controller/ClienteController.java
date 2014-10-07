@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.tamandua.hash.SenhaHash;
 import br.com.tamandua.json.JSONObject;
 import br.com.tamandua.mode.Cliente;
 import br.com.tamandua.tasks.TaskCliente;
@@ -53,6 +54,8 @@ public class ClienteController {
 			result.put("msgm", task.taskinserirCliente(cliente.getCpf(), cliente.getNome(), cliente.getTelefone(), cliente.getEndereco(), cliente.getStatus()));
 			mv = new ModelAndView("gerente/cliente/resultado");
 			mv.addObject("msgm", result.toString());
+			String senhaHash = new SenhaHash().hash_senha(cliente.getSenhaConta());
+			task.taskcriarConta(cliente.getCpf(), senhaHash);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

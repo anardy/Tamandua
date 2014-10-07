@@ -7,6 +7,7 @@ public class Cliente {
 	private String endereco;
 	private short status;
 	private String telefone;
+	private String senhaConta;
 
 	public String getCpf() {
 		return cpf;
@@ -46,6 +47,14 @@ public class Cliente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public String getSenhaConta() {
+		return senhaConta;
+	}
+
+	public void setSenhaConta(String senhaConta) {
+		this.senhaConta = senhaConta;
 	}
 
 }

@@ -35,7 +35,7 @@ var Tamandua = function() {
 						  		$('#txtTelefone').val(t[i]);
 						  		break;
 						  	case 4:
-						  		$('#txtStatus').val(t[i]);
+						  		$('#ddlStatus').val(t[i]);
 						  		break;
 						  }
 					  }
@@ -57,6 +57,7 @@ var Tamandua = function() {
 				  data: $('#formCadCliente').serialize(),
 				  success: function(data) {
 					  console.log(data);
+					  // se a msgm OK -- chamar o criarconta
 				  }
 			});
 		},
@@ -103,10 +104,10 @@ var Tamandua = function() {
 						  		$('#txtLogin').val(t[i]);
 						  		break;
 						  	case 3:
-						  		$('#txtStatus').val(t[i]);
+						  		$('#ddlStatus').val(t[i]);
 						  		break;
 						  	case 4:
-						  		$('#txtFuncao').val(t[i]);
+						  		$('#ddlFuncao').val(t[i]);
 						  		break;
 						  }
 					  }
