@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/anardy/Tamandua.svg?branch=master)](https://travis-ci.org/anardy/Tamandua)
+
 # Tamandua
 
 Aplicação para controle do Banco Comunitário Tamanduá.
