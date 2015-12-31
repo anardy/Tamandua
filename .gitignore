@@ -8,6 +8,6 @@
 .classpath
 target/
 build/
-src/main/webapp/js/vendor/
+src/js/vendor/
 node_modules/
 .readme.md.html
