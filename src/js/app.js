@@ -8,10 +8,9 @@
 
     this.get('#/saldo', function(context) {
       context.app.swap('');
-      var context = this;
       this.load('http://localhost:8080/TamanduaWS/transacao/saldo/1')
       .then(function(items) {
-        if (items != null) {
+        if (items !== null) {
           var json = $.parseJSON(items);
           context.saldo = json[0].saldo;
         } else {
@@ -34,7 +33,7 @@
       $.ajaxSetup({async:true});
       this.msgm = result.msg;
       this.partial('templates/teste.html');
-    })
+    });
 
     this.get('#/extrato', function(context) {
       context.app.swap('');
@@ -42,7 +41,7 @@
       .then(function(items) {
         $.each(items, function(i, item) {
           var date = new Date(item.data);
-          var dataFormat = date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear() + " " + date.getHours() + ":"+ date.getMinutes()
+          var dataFormat = date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear() + " " + date.getHours() + ":"+ date.getMinutes();
           var fator = (item.fator === 1) ? 'credito' : 'debito';
           context.render('templates/extrato.html', {nroconta: item.nroconta, tptransacao: item.tipotransacao, valor: item.valor, data: dataFormat, fator: fator})
           .appendTo(context.$element());
@@ -55,4 +54,4 @@
   $(function() {
     app.run('#/');
   });
-})(jQuery)
+})(jQuery);
