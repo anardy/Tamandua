@@ -1,0 +1,27 @@
+{
+  "name": "Tamandua",
+  "homepage": "https://github.com/anardy/Tamandua",
+  "authors": [
+    "Andre Nardy <macknardy@gmail.com>"
+  ],
+  "description": "Banco Comunitario Tamandua",
+  "main": "/assets/scripts/main.js",
+  "moduleType": [],
+  "keywords": [
+    "Banco",
+    "Tamandua"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sammy": "~0.7.6",
+    "mustache.js": "mustache#~2.2.1"
+  }
+}
