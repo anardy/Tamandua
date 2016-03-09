@@ -1,0 +1,19 @@
+<div class="col-md-4">
+  <div class="login-panel panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Login - Área do Funcionário</h3>
+    </div>
+    <div class="panel-body">
+      <form method="POST" action="#/loginFuncionario">
+        {{msg}}
+        <fieldset>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="senha" name="senha">
+            <input type="hidden" name="cpf" value="{{cpf}}">
+          </div>
+          <input type="submit" value="Login" class="btn btn-sm btn-success">
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

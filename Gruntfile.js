@@ -2,12 +2,14 @@ module.exports = function(grunt){
 
 	grunt.initConfig({
 		jshint: {
-			all: ['src/js/app.js']
+			all: ['src/js/correntista.js','src/js/funcionario.js','src/js/login.js']
 		},
 		uglify: {
 			build: {
 				files: {
-					'src/js/app.min.js': ['src/js/app.js']
+					'src/js/correntista.min.js': ['src/js/correntista.js'],
+					'src/js/funcionario.min.js': ['src/js/funcionario.js'],
+					'src/js/login.min.js': ['src/js/login.js']
 				}
 			}
 		},

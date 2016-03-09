@@ -1,0 +1,22 @@
+<form method="POST" action="#/cadCorrentista">
+  <div class="form-group">
+    <label for="CPF">CPF</label>
+    <input type="text" name="cpf" class="form-control" placeholder="CPF" value="{{cpf}}" {{desabilita}}>
+  </div>
+  <div class="form-group">
+    <label for="Nome do Funcionario">Nome</label>
+    <input type="text" name="nome" class="form-control" placeholder="Nome" value="{{nome}}">
+  </div>
+  <div class="form-group">
+    <label for="Endereco">Endereço</label>
+    <input type="text" name="endereco" class="form-control" placeholder="Endereço" value="{{endereco}}">
+  </div>
+  <div class="form-group">
+    <label for="Telefone">Telefone</label>
+    <input type="text" name="telefone" class="form-control" placeholder="Telefone" value="{{telefone}}">
+  </div>
+  <div class="form-group">
+    <input type="hidden" name="tipo" value="{{tipo}}">
+    <button type="submit" class="btn btn-success">{{tipo}}</button>
+  </div>
+</form>

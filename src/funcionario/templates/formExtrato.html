@@ -1,0 +1,34 @@
+<form method="POST" action="#/extrato">
+  <div class="form-group">
+    <label for="Numero Conta">Número Conta</label>
+    <input type="text" name="nroconta" class="form-control" placeholder="Número Conta">
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Consultar</button>
+  </div>
+</form>
+
+{{#item.0}}
+<table class="table">
+  <thead>
+    <th>Número Conta</th>
+    <th>Transação</th>
+    <th>Valor</th>
+    <th>Data</th>
+    <th>Fator</th>
+  </thead>
+  <tbody>
+{{#item}}
+    <tr>
+      <td>{{nroconta}}</td>
+      <td>{{tipotransacao}}</td>
+      <td>{{valor}}</td>
+      <td>{{data}}</td>
+      <td>{{{fator}}}</td>
+    </tr>
+{{/item}}
+  <tbody>
+</table>
+{{/item.0}}
+
+{{msgm}}
