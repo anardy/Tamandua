@@ -192,9 +192,6 @@
       this.trigger('menu');
       context.cpf = this.params.cpf;
       this.partial('templates/formAssociar.html').then(function(content) {
-        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/tipoacesso/', {
-          json: true
-        }).
         then(function(item) {
           $select = $('#sltTipo');
           $.each(item, function(key, value) {
@@ -353,22 +350,17 @@
       this.partial('templates/formSaldo.html');
     });
 
-    this.get('#/saldo', function(context) {
-      this.trigger('menu');
-      this.partial('templates/formSaldo.html');
-    });
-
     this.post('#/saldo', function(context) {
       var nroconta = $('form').find('input[name="nroconta"]').val();
-      this.load('http://localhost:8080/TamanduaWS/api/transacao/saldo/'+nroconta)
-      .then(function(items) {
-        if (items !== null) {
-          var json = $.parseJSON(items);
-          context.saldo = 'Saldo: ' + json[0].saldo;
-        } else {
-           context.saldo = 'Não foi encontrado o saldo por falta de informação';
-        }
-      }).partial('templates/formSaldo.html');
+      this.load('http://localhost:8080/TamanduaWS/api/transacao/saldo/' + nroconta)
+        .then(function(items) {
+          if (items !== null) {
+            var json = $.parseJSON(items);
+            context.saldo = 'Saldo: R$ ' + json[0].saldo;
+          } else {
+            context.saldo = 'Não foi encontrado o saldo por falta de informação';
+          }
+        }).partial('templates/formSaldo.html');
     });
 
     this.get('#/extrato', function(context) {
@@ -378,14 +370,16 @@
 
     this.post('#/extrato', function(context) {
       var nroconta = $('form').find('input[name="nroconta"]').val();
-        this.load('http://localhost:8080/TamanduaWS/api/transacao/extrato/'+nroconta, {json: true})
+      this.load('http://localhost:8080/TamanduaWS/api/transacao/extrato/' + nroconta, {
+          json: true
+        })
         .then(function(item) {
           for (var i in item) {
             var data = new Date(item[i].data);
             item[i].fator = (item[i].fator === 2) ? '<i class=\'fa fa-plus\'/>' : '<i class=\'fa fa-minus\'/>';
             item[i].data = data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + " " + data.getHours() + ":" + data.getMinutes();
             var tipo = '';
-            switch(item[i].tipotransacao) {
+            switch (item[i].tipotransacao) {
               case 1:
                 tipo = 'Extrato';
                 break;
@@ -399,12 +393,103 @@
             item[i].tipotransacao = tipo;
           }
           if (item === null) {
-            var element = 'Nenhum Registro Encontrado com a conta ('+nroconta+') informada!';
+            var element = 'Nenhum Registro Encontrado com a conta (' + nroconta + ') informada!';
             context.msgm = element;
           } else {
             context.item = item;
           }
-      }).partial('templates/formExtrato.html');
+        }).partial('templates/formExtrato.html');
+    });
+
+    this.get('#/geraConta', function(context) {
+      context.app.swap('');
+      this.trigger('menu');
+      this.partial('templates/contas.html')
+        .then(function() {
+          $('#tblConta').DataTable({
+            "ajax": {
+              "url": "http://localhost:8080/TamanduaWS/api/transacao/contas",
+              "dataSrc": ""
+            },
+            "columns": [{
+              "data": "nroconta",
+              "render": function(data, type, full, meta) {
+                return '<a href="#/editarConta/' + data + '">' + data + '</a>';
+              }
+            }, {
+              "data": "correntista"
+            }, {
+              "data": "status"
+            }]
+          });
+        });
+    });
+
+    this.get('#/cadConta', function(context) {
+      this.trigger('menu');
+      context.tipo = 'Cadastrar';
+
+      this.partial('templates/formConta.html').then(function() {
+        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/status', {
+          json: true
+        }).
+        then(function(item) {
+          $select = $('#sltStatus');
+          $.each(item, function(key, value) {
+            $('<option>').val(value.codigo).text(value.status).appendTo($select);
+          });
+        });
+
+        this.load('http://localhost:8080/TamanduaWS/api/correntista', {
+          json: true
+        }).
+        then(function(item) {
+          $select = $('#sltCorrentista');
+          $.each(item, function(key, value) {
+            $('<option>').val(value.cpf).text(value.cpf).appendTo($select);
+          });
+        });
+      });
+    });
+
+    this.get('#/editarConta/:nroconta', function(context) {
+      context.app.swap('');
+      this.trigger('menu');
+      var nroconta = this.params.nroconta;
+      context.nroconta = nroconta;
+      context.tipo = 'Editar';
+      context.desabilita = 'disabled';
+
+      this.partial('templates/formConta.html').then(function() {
+        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/status', {
+          json: true
+        }).
+        then(function(item) {
+          $select = $('#sltStatus');
+          $.each(item, function(key, value) {
+            $('<option>').val(value.codigo).text(value.status).appendTo($select);
+          });
+        });
+
+        this.load('http://localhost:8080/TamanduaWS/api/correntista', {
+          json: true
+        }).
+        then(function(item) {
+          $select = $('#sltCorrentista');
+          $.each(item, function(key, value) {
+            $('<option>').val(value.cpf).text(value.cpf).appendTo($select);
+          });
+        });
+
+        this.load('http://localhost:8080/TamanduaWS/api/transacao/conta/' + nroconta, {
+            cache: false
+          })
+          .then(function(items) {
+            var json = $.parseJSON(items);
+            $('#sltStatus').val(json[0].status);
+            $('#sltCorrentista').val(json[0].correntista);
+          });
+      });
     });
 
     this.bind('menu', function() {

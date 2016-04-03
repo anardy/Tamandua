@@ -1,0 +1,25 @@
+<form method="POST" action="#/conta">
+  <div class="form-group">
+    <label for="Numero Conta">Número Conta</label>
+    <input type="text" name="nroconta" class="form-control" placeholder="Número Conta" value="{{nroconta}}" {{desabilita}}>
+  </div>
+  <div class="form-group">
+    <label for="Status">Correntista</label>
+    <select name="correntista" id="sltCorrentista">
+      <option>Selecione...</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="Tipo">Senha</label>
+    <input type="password" name="senha" class="form-control" placeholder="Senha">
+  </div>
+  <div class="form-group">
+    <label for="Tipo">Status</label>
+    <select name="status" id="sltStatus">
+      <option>Selecione...</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">{{tipo}}</button>
+  </div>
+</form>
