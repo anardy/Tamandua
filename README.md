@@ -2,18 +2,18 @@
 
 # Tamandua
 
-Aplicação para controle do Banco Comunitário Tamanduá.
+AplicaÃ§Ã£o Front-End do Banco TamanduÃ¡.
 
-# Próxima Versão
+# Tecnologias Envolvidas
 
-- Spring Security
-- Upgrade Spring Framework (3.2.8)
+* [jQuery]()
+* [Sammy.js]()
+* [HTML5]()
+* [Bootstrap]()
 
-# Requisitos para execução do Projeto
+# PrÃ³ximos Passos
 
-* [Maven](http://maven.apache.org/-maven)
-* [WildFly](http://wildfly.org/)
-* [Projeto Tamandua WebService](https://github.com/anardy/TamanduaWS)
+CriaÃ§Ã£o do ambiente em docker para executar a aplicaÃ§Ã£o
 
 # Clone Projeto
 
@@ -21,40 +21,20 @@ Aplicação para controle do Banco Comunitário Tamanduá.
 $ git clone git://github.com/anardy/Tamandua.git
 ```
 
-# Maven
-
-```
-$ mvn clean install
-```
-
-# Configurando Log
-
-Altere o caminho do arquivo WebContent/classes/log4j.xml
-
-```xml
-<param name="File" value="SeuCaminho\tamandua.log"/>
-```
-
-Obs: Caso rode no Windows use duas barras `SeuCaminho\\tamandua.log`
-
-# Web Container
-
-Com o `.war` faça o deploy
-
 # Acessando
 
-http://localhost:8080/login.do
+http://localhost/Tamandua/src/#/
 
 ### Dados de acesso ao Sistema
 
 #### Login
 
-Usuário: user
+UsuÃ¡rio: user
 
 Senha: 321
 
-#### Conta Bancária
+#### Conta BancÃ¡ria
 
-Número da conta: 1
+NÃºmero da conta: 1
 
-Senha da conta: 123456 
+Senha da conta: 123456
