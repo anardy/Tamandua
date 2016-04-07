@@ -1,4 +1,5 @@
 (function($) {
+
   var app = $.sammy('#main', function() {
     this.use('Mustache', 'html');
 
@@ -6,6 +7,8 @@
       tipo: '',
       msg: ''
     };
+
+    var url = Util.getUrl();
 
     this.helpers({
       getTipoFuncionario: function() {
@@ -28,7 +31,7 @@
       $.ajaxSetup({
         async: false
       });
-      $.post('http://localhost:8080/TamanduaWS/api/autentica', $('form').serialize(), function(data) {
+      $.post(url+'autentica', $('form').serialize(), function(data) {
         result = data;
       }).fail(function(xhr) {
         result = $.parseJSON(xhr.responseText);
@@ -53,7 +56,7 @@
       $.ajaxSetup({
         async: false
       });
-      $.post('http://localhost:8080/TamanduaWS/api/autentica/cliente', $('form').serialize(), function(data) {
+      $.post(url+'autentica/cliente', $('form').serialize(), function(data) {
         result = data;
       }).fail(function(xhr) {
         result = $.parseJSON(xhr.responseText);
@@ -75,7 +78,7 @@
       $.ajaxSetup({
         async: false
       });
-      $.post('http://localhost:8080/TamanduaWS/api/autentica/funcionario', $('form').serialize(), function(data) {
+      $.post(url+'autentica/funcionario', $('form').serialize(), function(data) {
         result = data;
       }).fail(function(xhr) {
         result = $.parseJSON(xhr.responseText);

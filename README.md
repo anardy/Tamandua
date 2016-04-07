@@ -4,16 +4,18 @@
 
 Aplicação Front-End do Banco Tamanduá.
 
+Para execução desta aplicação é necessário a API do back-end que se encontra no repositório [TamanduaAPI](https://github.com/anardy/TamanduaAPI)
+
 # Tecnologias Envolvidas
 
-* [jQuery]()
-* [Sammy.js]()
-* [HTML5]()
-* [Bootstrap]()
+* [Bootstrap](http://getbootstrap.com/)
+* [jQuery](https://jquery.com/)
+* [Sammy.js](http://sammyjs.org/)
 
 # Próximos Passos
 
-Criação do ambiente em docker para executar a aplicação
+* Criação do ambiente em docker para executar a aplicação
+* Escrever os testes da aplicação
 
 # Clone Projeto
 
@@ -25,16 +27,24 @@ $ git clone git://github.com/anardy/Tamandua.git
 
 http://localhost/Tamandua/src/#/
 
-### Dados de acesso ao Sistema
+# Perfis de acesso
 
-#### Login
+## Correntista
 
-Usuário: user
+CPF: 111.111.111-11
+Senha: 123
 
-Senha: 321
+## Administrador de Sistema
 
-#### Conta Bancária
+CPF: 345
+Senha: 123
 
-Número da conta: 1
+## Gerente
 
-Senha da conta: 123456
+CPF: 789
+Senha: 123
+
+## Funcioanario
+
+CPF: 321
+Senha: 123

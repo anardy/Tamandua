@@ -3,6 +3,7 @@
   var app = $.sammy('#main', function() {
     this.use('Mustache', 'html');
 
+    var url = Util.getUrl();
     // valida se o usuário foi autenticado no around
     // criar uma trigger de limpeza de form
 
@@ -22,7 +23,7 @@
 
     this.around(function(callback) {
       var context = this;
-      this.load('http://localhost:8080/TamanduaWS/api/autentica/menuFuncionario/' + this.getTipoFuncionario())
+      this.load(url+'autentica/menuFuncionario/' + this.getTipoFuncionario())
         .then(function(items) {
           context.items = $.parseJSON(items);
         }).then(callback);
@@ -45,7 +46,7 @@
         .then(function() {
           $('#example').DataTable({
             "ajax": {
-              "url": "http://localhost:8080/TamanduaWS/api/funcionario",
+              "url": url+"funcionario",
               "dataSrc": ""
             },
             "columns": [{
@@ -70,7 +71,7 @@
       context.app.swap('');
       this.trigger('menu');
       var cpf = this.params.cpf;
-      this.load('http://localhost:8080/TamanduaWS/api/funcionario/' + cpf, {
+      this.load(url+'funcionario/' + cpf, {
           cache: false
         })
         .then(function(items) {
@@ -88,10 +89,10 @@
         .then(function() {
           $('#tblCtrAcesso').DataTable({
             "ajax": {
-              "url": "http://localhost:8080/TamanduaWS/api/ctracesso",
-              "dataSrc": ""
+              "url": url+'ctracesso',
+              "dataSrc": ''
             },
-            "columns": [{
+            'columns': [{
               "data": "cpf",
               "render": function(data, type, full, meta) {
                 return '<a href="#/editarCtrAcesso/' + data + '">' + data + '</a>';
@@ -114,7 +115,7 @@
       context.cpf = cpf;
 
       this.partial('templates/formCtrAcesso.html').then(function() {
-        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/tipoacesso/', {
+        this.load(url+'ctracesso/tipoacesso/', {
           json: true
         }).
         then(function(item) {
@@ -124,7 +125,7 @@
           });
         });
 
-        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/status/', {
+        this.load(url+'ctracesso/status/', {
           json: true
         }).
         then(function(item) {
@@ -134,7 +135,7 @@
           });
         });
 
-        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/' + cpf, {
+        this.load(url+'ctracesso/' + cpf, {
           json: true
         }).
         then(function(item) {
@@ -156,7 +157,7 @@
         "tipo": $('form').find('select[name="tipo"]').val()
       };
       $.ajax({
-        url: 'http://localhost:8080/TamanduaWS/api/ctracesso',
+        url: url+'ctracesso',
         type: 'PUT',
         data: data,
         success: function(data) {
@@ -172,7 +173,7 @@
         .then(function() {
           $('#tblDesassociado').DataTable({
             "ajax": {
-              "url": "http://localhost:8080/TamanduaWS/api/ctracesso/desassociados",
+              "url": url+"ctracesso/desassociados",
               "dataSrc": ""
             },
             "columns": [{
@@ -200,7 +201,7 @@
         });
 
 
-        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/status/', {
+        this.load(url+'ctracesso/status/', {
           json: true
         }).
         then(function(item) {
@@ -217,7 +218,7 @@
       $campoCPF.removeAttr('disabled');
       var serialize = $('form').serialize();
       $campoCPF.attr('disabled', 'disabled');
-      $.post('http://localhost:8080/TamanduaWS/api/ctracesso/associar', serialize, function(data) {
+      $.post(url+'ctracesso/associar', serialize, function(data) {
         toastr.success('Funcionario ' + $('form').find('input[name="cpf"]').val() + ' foi associado a um perfil de acesso com sucesso!', 'Banco Tamandua');
       }).fail(function(xhr) {
         result = $.parseJSON(xhr.responseText);
@@ -243,7 +244,7 @@
     this.post('#/cadastroFunc', function() {
       var tipo = $('form').find('input[name="tipo"]').val();
       if (tipo === 'Cadastrar') {
-        $.post('http://localhost:8080/TamanduaWS/api/funcionario', $('form').serialize(), function(data) {
+        $.post(url+'funcionario', $('form').serialize(), function(data) {
           toastr.success('Funcionario ' + $('form').find('input[name="nome"]').val() + ' cadastro com sucesso!', 'Banco Tamandua');
         }).fail(function(xhr) {
           result = $.parseJSON(xhr.responseText);
@@ -255,7 +256,7 @@
           "senha": $('form').find('input[name="senha"]').val()
         };
         $.ajax({
-          url: 'http://localhost:8080/TamanduaWS/api/funcionario',
+          url: url+'funcionario',
           type: 'PUT',
           data: data,
           success: function(data) {
@@ -274,7 +275,7 @@
         .then(function() {
           $('#tblCorrentista').DataTable({
             "ajax": {
-              "url": "http://localhost:8080/TamanduaWS/api/correntista",
+              "url": url+"correntista",
               "dataSrc": ""
             },
             "columns": [{
@@ -302,7 +303,7 @@
     this.post('#/cadCorrentista', function() {
       var tipo = $('form').find('input[name="tipo"]').val();
       if (tipo === 'Cadastrar') {
-        $.post('http://localhost:8080/TamanduaWS/api/correntista', $('form').serialize(), function(data) {
+        $.post(url+'correntista', $('form').serialize(), function(data) {
           toastr.success('Correntista ' + $('form').find('input[name="cpf"]').val() + ' cadastrado com sucesso!', 'Banco Tamandua');
           $('form').find("input[type=text]").val("");
           $('form').find("input[name=cpf]").focus();
@@ -317,7 +318,7 @@
           "telefone": $('form').find('input[name="telefone"]').val()
         };
         $.ajax({
-          url: 'http://localhost:8080/TamanduaWS/api/correntista',
+          url: url+'correntista',
           type: 'PUT',
           data: data,
           success: function(data) {
@@ -331,7 +332,7 @@
       context.app.swap('');
       this.trigger('menu');
       var cpf = this.params.cpf;
-      this.load('http://localhost:8080/TamanduaWS/api/correntista/' + cpf, {
+      this.load(url+'correntista/' + cpf, {
           cache: false
         })
         .then(function(items) {
@@ -352,7 +353,7 @@
 
     this.post('#/saldo', function(context) {
       var nroconta = $('form').find('input[name="nroconta"]').val();
-      this.load('http://localhost:8080/TamanduaWS/api/transacao/saldo/' + nroconta)
+      this.load(url+'conta/saldo/' + nroconta)
         .then(function(items) {
           if (items !== null) {
             var json = $.parseJSON(items);
@@ -370,7 +371,7 @@
 
     this.post('#/extrato', function(context) {
       var nroconta = $('form').find('input[name="nroconta"]').val();
-      this.load('http://localhost:8080/TamanduaWS/api/transacao/extrato/' + nroconta, {
+      this.load(url+'conta/extrato/' + nroconta, {
           json: true
         })
         .then(function(item) {
@@ -408,7 +409,7 @@
         .then(function() {
           $('#tblConta').DataTable({
             "ajax": {
-              "url": "http://localhost:8080/TamanduaWS/api/transacao/contas",
+              "url": url+"conta",
               "dataSrc": ""
             },
             "columns": [{
@@ -430,7 +431,7 @@
       context.tipo = 'Cadastrar';
 
       this.partial('templates/formConta.html').then(function() {
-        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/status', {
+        this.load(url+'ctracesso/status', {
           json: true
         }).
         then(function(item) {
@@ -440,7 +441,7 @@
           });
         });
 
-        this.load('http://localhost:8080/TamanduaWS/api/correntista', {
+        this.load(url+'correntista', {
           json: true
         }).
         then(function(item) {
@@ -461,7 +462,7 @@
       context.desabilita = 'disabled';
 
       this.partial('templates/formConta.html').then(function() {
-        this.load('http://localhost:8080/TamanduaWS/api/ctracesso/status', {
+        this.load(url+'ctracesso/status', {
           json: true
         }).
         then(function(item) {
@@ -471,7 +472,7 @@
           });
         });
 
-        this.load('http://localhost:8080/TamanduaWS/api/correntista', {
+        this.load(url+'correntista', {
           json: true
         }).
         then(function(item) {
@@ -481,7 +482,7 @@
           });
         });
 
-        this.load('http://localhost:8080/TamanduaWS/api/transacao/conta/' + nroconta, {
+        this.load(url+'conta/' + nroconta, {
             cache: false
           })
           .then(function(items) {

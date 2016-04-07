@@ -7,6 +7,8 @@
       tipo: ''
     };
 
+    var url = Util.getUrl();
+
     this.helpers({
       getNroConta: function() {
         var store = new Sammy.Store.SessionStorage('conta');
@@ -26,7 +28,7 @@
 
     this.get('#/saldo', function(context) {
       context.app.swap('');
-      this.load('http://localhost:8080/TamanduaWS/api/transacao/saldo/'+this.getNroConta())
+      this.load(url+'conta/saldo/'+this.getNroConta())
       .then(function(items) {
         if (items !== null) {
           var json = $.parseJSON(items);
@@ -47,13 +49,12 @@
           .removeClass('hide');
         }
       });
-
     });
 
     this.post('#/transferencia', function(context) {
       $.ajaxSetup({async:false});
       var result;
-      $.post('http://localhost:8080/TamanduaWS/api/transacao/transferencia', $('form').serialize(), function(data) {
+      $.post(url+'transferencia', $('form').serialize(), function(data) {
         result = data;
       });
       $.ajaxSetup({async:true});
@@ -63,7 +64,7 @@
 
     this.get('#/extrato', function(context) {
       context.app.swap('');
-      this.load('http://localhost:8080/TamanduaWS/api/transacao/extrato/'+this.getNroConta(), {json: true})
+      this.load(url+'conta/extrato/'+this.getNroConta(), {json: true})
       .then(function(item) {
         for (var i in item) {
           var data = new Date(item[i].data);
